@@ -18,7 +18,7 @@
 
 <body>
 
-Co-Authored-By: Gemini
+Co-Authored-By: AI Assistant
 ```
 
 ### Types
