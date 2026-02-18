@@ -1,5 +1,5 @@
 # Backlog
-<!-- Created: 2026-02-18 | Last Updated: 2026-02-18 -->
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-19 -->
 
 Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 
@@ -17,7 +17,17 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - [x] .gitignore + SECURITY.md - 2026-02-18 DONE
 - [x] Module-level README files - 2026-02-18 DONE
 - [x] Initial commit + push GitHub - 2026-02-18 DONE
+- [x] Bug Bounty division : 10 agents securite (osint-analyst, pentester, google-dorker, security-researcher, bounty-hunter, report-writer, platform-manager, bounty-finance, vulnerability-assessor, bounty-orchestrator) - 2026-02-18 DONE
+- [x] OSINT toolkit : 16 scripts Python (dns, certs, whois, email, leaks, wayback, market, social, dorker, deep_scan, nuclei, shodan, threat, correlation, report, pipeline) - 2026-02-18 DONE
+- [x] 7 skills securite (osint-recon, bug-bounty-workflow, google-dorking, vulnerability-scoring, pentest-methodology, report-templates, platform-management) - 2026-02-18 DONE
+- [x] Suppression references Gemini -> AI Assistant - 2026-02-19 DONE
+- [x] Sanitisation secrets (base64 patterns, dorks dynamiques, gitignore .venv) - 2026-02-19 DONE
+- [x] Integration plugin.json (skills + agents enregistres) - 2026-02-19 DONE
+- [x] 11 commandes OSINT (wrappers shell) + commands.json - 2026-02-19 DONE
+- [x] Tests validation (18 scripts syntaxe, 11 wrappers, npm test 85/85, scan secrets clean) - 2026-02-19 DONE
 - [ ] Verifier que tous les CI/CD passent
+- [ ] Pipeline CI adaptee aux skills OSINT/BB (Python lint + syntax + JSON output)
+- [ ] Refactor scripts OSINT : remplacer bs4 par outils natifs agents (search_web, read_url_content)
 
 ## Should Have
 
@@ -38,3 +48,4 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - Custom LLM training pipeline
 - SaaS hosting platform
 - Billing/subscription management
+

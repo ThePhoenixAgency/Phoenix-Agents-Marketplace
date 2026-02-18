@@ -55,6 +55,19 @@
             "status": "commands/workflow/status.sh",
             "validate": "commands/workflow/validate.sh",
             "report": "commands/workflow/report.sh"
+        },
+        "osint": {
+            "recon": "commands/osint/recon.sh",
+            "dns": "commands/osint/dns.sh",
+            "certs": "commands/osint/certs.sh",
+            "whois": "commands/osint/whois.sh",
+            "leaks": "commands/osint/leaks.sh",
+            "dorker": "commands/osint/dorker.sh",
+            "wayback": "commands/osint/wayback.sh",
+            "shodan": "commands/osint/shodan.sh",
+            "social": "commands/osint/social.sh",
+            "threat": "commands/osint/threat.sh",
+            "pipeline": "commands/osint/pipeline.sh"
         }
     }
 }

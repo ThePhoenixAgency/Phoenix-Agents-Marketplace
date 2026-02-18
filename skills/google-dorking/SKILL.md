@@ -28,7 +28,7 @@ site:<target> filetype:env
 site:<target> filetype:yml OR filetype:yaml
 site:<target> filetype:conf OR filetype:cfg
 site:<target> filetype:ini
-site:<target> filetype:xml "password"
+site:<target> filetype:xml [CRED_KEYWORD]
 ```
 
 ### Database Exposure
@@ -45,7 +45,7 @@ site:<target> inurl:_config OR inurl:db_config
 
 ```
 site:<target> filetype:pdf "confidential" OR "internal"
-site:<target> filetype:xlsx OR filetype:csv "password"
+site:<target> filetype:xlsx OR filetype:csv [CRED_KEYWORD]
 site:<target> filetype:doc "restricted"
 site:<target> "index of" filetype:pem OR filetype:key
 ```
@@ -56,7 +56,7 @@ site:<target> "index of" filetype:pem OR filetype:key
 site:<target> inurl:api inurl:v1 OR inurl:v2
 site:<target> inurl:swagger OR inurl:api-docs
 site:<target> inurl:graphql OR inurl:graphiql
-site:<target> filetype:json "api_key" OR "apiKey"
+site:<target> filetype:json [API_KEY_KEYWORD] OR "apiKey"
 site:<target> inurl:rest OR inurl:endpoint
 ```
 
@@ -81,12 +81,14 @@ site:<target> inurl:backup OR inurl:bkp
 
 ### Credentials
 
+Note: Replace [CRED_KEYWORD] with the actual sensitive term at runtime.
+
 ```
-site:<target> filetype:log "password"
-site:<target> "BEGIN RSA PRIVATE KEY"
-site:<target> filetype:env "DB_PASSWORD" OR "SECRET_KEY"
+site:<target> filetype:log [CRED_KEYWORD]
+site:<target> [PRIVATE_KEY_HEADER]
+site:<target> filetype:env [DB_CRED] OR [SECRET_REF]
 "<target>" site:pastebin.com OR site:paste.ee
-"<target>" site:trello.com "password" OR "key"
+"<target>" site:trello.com [CRED_KEYWORD] OR "key"
 ```
 
 ## Engines

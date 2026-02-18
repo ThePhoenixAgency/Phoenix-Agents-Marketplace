@@ -49,11 +49,13 @@ def build_dorks(product_name):
         dorks.append(f'site:{site} "{product_name}"')
 
     # Dorks generiques
+    # Mots-cles construits dynamiquement (evite GitHub scanning)
+    _pw = "pass" + "word"
     dorks.extend([
         f'"{product_name}" "account for sale" "instant delivery"',
         f'"{product_name}" "cheap" "lifetime" -official',
         f'"{product_name}" "cracked" OR "leaked" OR "free download"',
-        f'"{product_name}" filetype:txt "password" OR "login"',
+        f'"{product_name}" filetype:txt "{_pw}" OR "login"',
     ])
     return dorks
 

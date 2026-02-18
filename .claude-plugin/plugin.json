@@ -1,6 +1,6 @@
 {
     "name": "claude-marketplace",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Claude Code Marketplace by PhoenixProject - Skills, plugins and tools for Claude Code agents",
     "author": {
         "name": "PhoenixProject",
@@ -17,11 +17,15 @@
         "agents",
         "pipeline",
         "proxy",
-        "local-ai"
+        "local-ai",
+        "osint",
+        "bug-bounty",
+        "security"
     ],
     "skills": [
         "./plugins/dev-pipeline/skills/",
-        "./plugins/local-switch/skills/"
+        "./plugins/local-switch/skills/",
+        "./skills/"
     ],
     "agents": [
         "./plugins/dev-pipeline/agents/project-classifier.md",
@@ -33,6 +37,16 @@
         "./plugins/dev-pipeline/agents/accessibility-auditor.md",
         "./plugins/dev-pipeline/agents/performance-auditor.md",
         "./plugins/dev-pipeline/agents/tech-lead.md",
-        "./plugins/dev-pipeline/agents/hub-manager.md"
+        "./plugins/dev-pipeline/agents/hub-manager.md",
+        "./agents/osint-analyst.md",
+        "./agents/pentester.md",
+        "./agents/google-dorker.md",
+        "./agents/security-researcher.md",
+        "./agents/bounty-hunter.md",
+        "./agents/report-writer.md",
+        "./agents/platform-manager.md",
+        "./agents/bounty-finance.md",
+        "./agents/vulnerability-assessor.md",
+        "./agents/bounty-orchestrator.md"
     ]
 }
