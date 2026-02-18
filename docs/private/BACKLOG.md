@@ -16,7 +16,7 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - [x] README, CONTRIBUTING, INSTALL, CHANGELOG, LICENSE - 2026-02-18 DONE
 - [x] .gitignore + SECURITY.md - 2026-02-18 DONE
 - [x] Module-level README files - 2026-02-18 DONE
-- [ ] Initial commit + push GitHub
+- [x] Initial commit + push GitHub - 2026-02-18 DONE
 - [ ] Verifier que tous les CI/CD passent
 
 ## Should Have
