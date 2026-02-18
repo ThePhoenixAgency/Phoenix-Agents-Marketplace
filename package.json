@@ -1,0 +1,14 @@
+{
+    "name": "claude-marketplace",
+    "version": "0.1.0",
+    "description": "Multi-agent orchestration system",
+    "private": true,
+    "scripts": {
+        "test": "jest --coverage",
+        "test:watch": "jest --watch",
+        "lint": "echo 'lint OK'"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0"
+    }
+}

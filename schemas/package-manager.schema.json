@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Package Manager Detection",
+    "description": "Schema for detected package manager configuration",
+    "type": "object",
+    "properties": {
+        "packageManager": {
+            "type": "string",
+            "enum": [
+                "npm",
+                "yarn",
+                "pnpm",
+                "bun",
+                "poetry",
+                "pip",
+                "go",
+                "cargo",
+                "bundler"
+            ],
+            "description": "Detected package manager"
+        },
+        "lockFile": {
+            "type": "string",
+            "description": "Path to lock file"
+        },
+        "installCommand": {
+            "type": "string",
+            "description": "Command to install dependencies"
+        },
+        "runCommand": {
+            "type": "string",
+            "description": "Command prefix to run scripts"
+        }
+    },
+    "required": [
+        "packageManager"
+    ]
+}

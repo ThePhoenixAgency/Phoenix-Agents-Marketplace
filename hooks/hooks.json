@@ -1,0 +1,88 @@
+{
+    "hooks": [
+        {
+            "type": "PreToolUse",
+            "matcher": "Bash",
+            "description": "Bloquer les dev servers lances hors tmux",
+            "command": "node hooks/block-dev-outside-tmux.js"
+        },
+        {
+            "type": "PreToolUse",
+            "matcher": "Bash",
+            "description": "Rappel tmux pour les commandes longues",
+            "command": "node hooks/tmux-reminder.js"
+        },
+        {
+            "type": "PreToolUse",
+            "matcher": "Bash",
+            "description": "Rappel review avant git push",
+            "command": "node hooks/git-push-review.js"
+        },
+        {
+            "type": "PreToolUse",
+            "matcher": "Write",
+            "description": "Bloquer creation fichiers .md arbitraires",
+            "command": "node hooks/block-random-docs.js"
+        },
+        {
+            "type": "PreToolUse",
+            "matcher": "Edit",
+            "description": "Suggerer compaction contexte a intervalles",
+            "command": "node hooks/suggest-compact.js"
+        },
+        {
+            "type": "PreCompact",
+            "matcher": "*",
+            "description": "Sauvegarder etat avant context compaction",
+            "command": "node hooks/pre-compact.js"
+        },
+        {
+            "type": "SessionStart",
+            "matcher": "*",
+            "description": "Charger contexte precedent et detecter package manager",
+            "command": "node hooks/session-start.js"
+        },
+        {
+            "type": "PostToolUse",
+            "matcher": "Bash",
+            "description": "Logger URL PR apres creation",
+            "command": "node hooks/pr-log.js"
+        },
+        {
+            "type": "PostToolUse",
+            "matcher": "Edit",
+            "description": "Auto-format avec Prettier apres edits",
+            "command": "node hooks/post-edit-format.js"
+        },
+        {
+            "type": "PostToolUse",
+            "matcher": "Edit",
+            "description": "TypeScript check apres edit .ts/.tsx",
+            "command": "node hooks/post-edit-typecheck.js"
+        },
+        {
+            "type": "PostToolUse",
+            "matcher": "Edit",
+            "description": "Warning console.log apres edits",
+            "command": "node hooks/post-edit-console-warn.js"
+        },
+        {
+            "type": "Stop",
+            "matcher": "*",
+            "description": "Checker console.log dans fichiers modifies",
+            "command": "node hooks/check-console-log.js"
+        },
+        {
+            "type": "SessionEnd",
+            "matcher": "*",
+            "description": "Persister etat de session",
+            "command": "node hooks/session-end.js"
+        },
+        {
+            "type": "SessionEnd",
+            "matcher": "*",
+            "description": "Evaluer session pour patterns extractables",
+            "command": "node hooks/evaluate-session.js"
+        }
+    ]
+}

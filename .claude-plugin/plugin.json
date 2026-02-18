@@ -1,0 +1,38 @@
+{
+    "name": "claude-marketplace",
+    "version": "1.0.0",
+    "description": "Claude Code Marketplace by PhoenixProject - Skills, plugins and tools for Claude Code agents",
+    "author": {
+        "name": "PhoenixProject",
+        "url": "https://github.com/ThePhoenixAgency"
+    },
+    "homepage": "https://github.com/ThePhoenixAgency/claude-marketplace",
+    "repository": "https://github.com/ThePhoenixAgency/claude-marketplace",
+    "license": "MIT",
+    "keywords": [
+        "claude-code",
+        "marketplace",
+        "plugins",
+        "skills",
+        "agents",
+        "pipeline",
+        "proxy",
+        "local-ai"
+    ],
+    "skills": [
+        "./plugins/dev-pipeline/skills/",
+        "./plugins/local-switch/skills/"
+    ],
+    "agents": [
+        "./plugins/dev-pipeline/agents/project-classifier.md",
+        "./plugins/dev-pipeline/agents/spec-writer.md",
+        "./plugins/dev-pipeline/agents/web-researcher.md",
+        "./plugins/dev-pipeline/agents/architect.md",
+        "./plugins/dev-pipeline/agents/implementer.md",
+        "./plugins/dev-pipeline/agents/qa-tester.md",
+        "./plugins/dev-pipeline/agents/accessibility-auditor.md",
+        "./plugins/dev-pipeline/agents/performance-auditor.md",
+        "./plugins/dev-pipeline/agents/tech-lead.md",
+        "./plugins/dev-pipeline/agents/hub-manager.md"
+    ]
+}

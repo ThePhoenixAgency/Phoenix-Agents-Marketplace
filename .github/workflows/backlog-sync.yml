@@ -1,0 +1,24 @@
+name: Backlog Sync
+on:
+    push:
+        branches: [main]
+        paths:
+            - "docs/private/BACKLOG.md"
+
+jobs:
+    validate-backlog:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Validate backlog format
+              run: |
+                  if [ ! -f "docs/private/BACKLOG.md" ]; then
+                    echo "[ERROR] BACKLOG.md not found"
+                    exit 1
+                  fi
+                  echo "[OK] BACKLOG.md exists"
+                  echo ""
+                  echo "Stats:"
+                  echo "  Total items: $(grep -c '^\- \[' docs/private/BACKLOG.md 2>/dev/null || echo 0)"
+                  echo "  Done: $(grep -c '^\- \[x\]' docs/private/BACKLOG.md 2>/dev/null || echo 0)"
+                  echo "  TODO: $(grep -c '^\- \[ \]' docs/private/BACKLOG.md 2>/dev/null || echo 0)"

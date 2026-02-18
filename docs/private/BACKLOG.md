@@ -1,0 +1,40 @@
+# Backlog
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-18 -->
+
+Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
+
+## Must Have
+
+- [x] Core scripts infrastructure (AMP, Registry, Memory, Router, Security) - 2026-02-18 DONE
+- [x] 22 agents specialistes + 6 orchestrateurs - 2026-02-18 DONE
+- [x] 57 skills - 2026-02-18 DONE
+- [x] 40 commands shell - 2026-02-18 DONE
+- [x] 14 hooks lifecycle - 2026-02-18 DONE
+- [x] Tests >90% coverage (85 tests, 98% lines) - 2026-02-18 DONE
+- [x] JSDoc sur tous les scripts core - 2026-02-18 DONE
+- [x] CI/CD workflows (7 pipelines) - 2026-02-18 DONE
+- [x] README, CONTRIBUTING, INSTALL, CHANGELOG, LICENSE - 2026-02-18 DONE
+- [x] .gitignore + SECURITY.md - 2026-02-18 DONE
+- [x] Module-level README files - 2026-02-18 DONE
+- [ ] Initial commit + push GitHub
+- [ ] Verifier que tous les CI/CD passent
+
+## Should Have
+
+- [ ] Plugin marketplace.json description enrichie
+- [ ] CLI installer (`npx claude-marketplace install`)
+- [ ] Auto-update mechanism pour les skills
+- [ ] Dashboard web pour monitoring agents
+
+## Could Have
+
+- [ ] VS Code extension pour marketplace browsing
+- [ ] Templates pour creer de nouveaux agents/skills
+- [ ] Metrics et analytics sur l'utilisation des agents
+- [ ] Integration avec d'autres LLM providers (Anthropic API, OpenAI)
+
+## Won't Have (v1)
+
+- Custom LLM training pipeline
+- SaaS hosting platform
+- Billing/subscription management

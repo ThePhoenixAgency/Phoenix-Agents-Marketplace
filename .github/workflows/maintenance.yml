@@ -1,0 +1,35 @@
+name: Maintenance
+on:
+    schedule:
+        - cron: "0 6 * * 0" # Dimanche 6h UTC
+
+jobs:
+    stale-branches:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: List stale branches
+              run: |
+                  echo "=== Branches without activity > 30 days ==="
+                  for branch in $(git branch -r --merged origin/main | grep -v 'main\|HEAD'); do
+                    LAST_COMMIT=$(git log -1 --format="%ci" "$branch" 2>/dev/null)
+                    if [ -n "$LAST_COMMIT" ]; then
+                      DAYS_AGO=$(( ($(date +%s) - $(date -d "$LAST_COMMIT" +%s 2>/dev/null || echo 0)) / 86400 ))
+                      if [ "$DAYS_AGO" -gt 30 ]; then
+                        echo "  [STALE] $branch (${DAYS_AGO} days)"
+                      fi
+                    fi
+                  done
+
+    dependency-update-check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: npm ci
+            - name: Check outdated packages
+              run: npm outdated || true

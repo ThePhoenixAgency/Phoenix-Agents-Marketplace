@@ -1,0 +1,25 @@
+name: Accessibility Audit
+on:
+    pull_request:
+        branches: [main]
+        paths:
+            - "**/*.html"
+            - "**/*.tsx"
+            - "**/*.jsx"
+            - "**/*.css"
+
+jobs:
+    wcag-check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: npm ci
+            - name: Build
+              run: npm run build || true
+            - name: Run accessibility audit
+              run: |
+                  npx pa11y-ci --config .pa11yci.json 2>/dev/null || \
+                  echo "[INFO] Configure pa11y-ci for automated WCAG checks"

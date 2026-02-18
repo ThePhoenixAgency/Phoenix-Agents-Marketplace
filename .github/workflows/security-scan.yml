@@ -1,0 +1,43 @@
+name: Security Scan
+on:
+    schedule:
+        - cron: "0 8 * * 1" # Lundi 8h UTC
+    push:
+        branches: [main]
+
+jobs:
+    dependency-audit:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: npm ci
+            - run: npm audit --audit-level=moderate
+
+    secrets-scan:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Gitleaks
+              uses: gitleaks/gitleaks-action@v2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    sensitive-docs:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Check sensitive docs in public dirs
+              run: |
+                  PATTERNS="THREAT.MODEL|REMEDIATION|VULNERABILITY|AUDIT.REPORT|CONFIDENTIAL|INTERNAL|RESTRICTED"
+                  FOUND=$(grep -rn "$PATTERNS" docs/ README.md CONTRIBUTING.md 2>/dev/null || true)
+                  if [ -n "$FOUND" ]; then
+                    echo "[ERROR] Sensitive content in public docs"
+                    echo "$FOUND"
+                    exit 1
+                  fi
+                  echo "[OK] No sensitive documents found in public directories"

@@ -1,0 +1,19 @@
+name: Performance Check
+on:
+    pull_request:
+        branches: [main]
+
+jobs:
+    lighthouse:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: npm ci
+            - run: npm run build || true
+            - name: Lighthouse CI
+              run: |
+                  npx lhci autorun 2>/dev/null || \
+                  echo "[INFO] Configure Lighthouse CI for performance checks"

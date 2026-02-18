@@ -1,0 +1,48 @@
+{
+    "name": "claude-marketplace",
+    "owner": {
+        "name": "ThePhoenixAgency",
+        "email": "phoenix.project@outlook.fr"
+    },
+    "metadata": {
+        "description": "Systeme multi-agents autonome : 22 agents, 6 orchestrateurs, 57 skills, 40 commands, 14 hooks. Model-agnostic, self-contained, zero dependance tiers."
+    },
+    "plugins": [
+        {
+            "name": "claude-marketplace",
+            "source": "./",
+            "description": "Systeme complet d'agents, skills, hooks, commands et rules pour orchestration multi-agents par mission",
+            "author": {
+                "name": "ThePhoenixAgency"
+            },
+            "homepage": "https://github.com/ThePhoenixAgency/Claude-Marketplace",
+            "repository": "https://github.com/ThePhoenixAgency/Claude-Marketplace",
+            "license": "MIT",
+            "keywords": [
+                "agents",
+                "skills",
+                "hooks",
+                "commands",
+                "multi-agent",
+                "orchestration",
+                "tdd",
+                "security",
+                "devops",
+                "model-agnostic"
+            ],
+            "category": "workflow",
+            "tags": [
+                "agents",
+                "skills",
+                "hooks",
+                "commands",
+                "multi-agent",
+                "orchestration",
+                "security",
+                "devops",
+                "domotique",
+                "model-agnostic"
+            ]
+        }
+    ]
+}

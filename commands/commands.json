@@ -1,0 +1,60 @@
+{
+    "commands": {
+        "git": {
+            "smart-commit": "commands/git/smart-commit.sh",
+            "branch-cleanup": "commands/git/branch-cleanup.sh",
+            "pr-create": "commands/git/pr-create.sh",
+            "changelog-generate": "commands/git/changelog-generate.sh",
+            "release-tag": "commands/git/release-tag.sh",
+            "stash-manager": "commands/git/stash-manager.sh",
+            "conflict-resolve": "commands/git/conflict-resolve.sh"
+        },
+        "test": {
+            "run-all": "commands/test/run-all.sh",
+            "coverage-report": "commands/test/coverage-report.sh",
+            "test-watch": "commands/test/test-watch.sh",
+            "e2e-run": "commands/test/e2e-run.sh",
+            "mutation-test": "commands/test/mutation-test.sh",
+            "benchmark": "commands/test/benchmark.sh"
+        },
+        "arch": {
+            "diagram": "commands/arch/diagram.sh",
+            "dependency-check": "commands/arch/dependency-check.sh",
+            "dead-code": "commands/arch/dead-code.sh",
+            "complexity-report": "commands/arch/complexity-report.sh",
+            "module-graph": "commands/arch/module-graph.sh",
+            "api-diff": "commands/arch/api-diff.sh"
+        },
+        "docs": {
+            "generate": "commands/docs/generate.sh",
+            "jsdoc": "commands/docs/jsdoc.sh",
+            "api-docs": "commands/docs/api-docs.sh",
+            "readme-sync": "commands/docs/readme-sync.sh"
+        },
+        "security": {
+            "audit": "commands/security/audit.sh",
+            "secrets-scan": "commands/security/secrets-scan.sh",
+            "deps-check": "commands/security/deps-check.sh",
+            "license-check": "commands/security/license-check.sh",
+            "sast-scan": "commands/security/sast-scan.sh"
+        },
+        "refactor": {
+            "extract-function": "commands/refactor/extract-function.sh",
+            "rename-symbol": "commands/refactor/rename-symbol.sh",
+            "inline-variable": "commands/refactor/inline-variable.sh",
+            "move-file": "commands/refactor/move-file.sh"
+        },
+        "devops": {
+            "docker-build": "commands/devops/docker-build.sh",
+            "deploy": "commands/devops/deploy.sh",
+            "rollback": "commands/devops/rollback.sh",
+            "health-check": "commands/devops/health-check.sh",
+            "logs-tail": "commands/devops/logs-tail.sh"
+        },
+        "workflow": {
+            "status": "commands/workflow/status.sh",
+            "validate": "commands/workflow/validate.sh",
+            "report": "commands/workflow/report.sh"
+        }
+    }
+}
