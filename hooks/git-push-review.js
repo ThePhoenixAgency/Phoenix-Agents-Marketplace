@@ -18,7 +18,7 @@ module.exports = {
                     '- [ ] Pas de console.log',
                     '- [ ] Pas de secrets dans le diff',
                     '- [ ] Commit message conventionnel',
-                    '- [ ] Co-Authored-By: AI Assistant',
+                    '- [ ] Co-Authored-By: Gemini',
                 ].join('\n'),
             };
         }

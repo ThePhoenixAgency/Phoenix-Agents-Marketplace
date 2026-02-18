@@ -1,15 +1,15 @@
 ---
 version: 1.0.0
-last_updated: 2026-02-19
+last_updated: 2026-02-04
 status: Stable
 ---
 
-# WEB SEARCH PROTOCOL
+# GEMINI WEB SEARCH PROTOCOL
 
-## PROTOCOLE D'EXECUTION OBLIGATOIRE
+## PROTOCOLE D'EXÉCUTION OBLIGATOIRE
 1.  **START** : Lire `docs/BACKLOG.md` et les Standards de Gouvernance.
-2.  **PROCESS** : Appliquer les regles sans deviation.
-3.  **END** : Mettre a jour `docs/BACKLOG.md` et `docs/CHANGELOG.md` avant tout commit.
+2.  **PROCESS** : Appliquer les règles sans déviation.
+3.  **END** : Mettre à jour `docs/BACKLOG.md` et `docs/CHANGELOG.md` avant tout commit.
 
 ## [VITAL] CORE SEARCH RULES
 1.  **Prioritize Official Sources**: Always prefer `developer.google.com`, `docs.apple.com`, `developer.apple.com`.

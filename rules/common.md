@@ -21,7 +21,7 @@
 
 <body>
 
-Co-Authored-By: AI Assistant
+Co-Authored-By: Gemini
 ```
 
 ## Documentation

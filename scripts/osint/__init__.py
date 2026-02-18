@@ -1,3 +1,0 @@
-"""
-OSINT Toolkit - scripts/osint
-"""
