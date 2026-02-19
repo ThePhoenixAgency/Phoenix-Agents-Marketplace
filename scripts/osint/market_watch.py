@@ -11,7 +11,7 @@ import sys
 import json
 import requests
 import urllib.parse
-from bs4 import BeautifulSoup
+import re
 import random
 import time
 
@@ -80,20 +80,26 @@ def search_dork(dork, max_results=3):
         resp = requests.get(url, headers=headers, timeout=15)
         resp.raise_for_status()
 
-        soup = BeautifulSoup(resp.text, "html.parser")
-        results = soup.find_all("div", class_="result")
+        # Parsing leger via regex
+        blocks = re.findall(r'<div class="result[^"]*"[^>]*>(.*?)</div>\s*</div>', resp.text, re.DOTALL)
 
-        for res in results[:max_results]:
-            title_tag = res.find("a", class_="result__a")
-            snippet_tag = res.find("a", class_="result__snippet")
+        for block in blocks[:max_results]:
+            title_match = re.search(r'<a class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', block, re.DOTALL)
+            snippet_match = re.search(r'<a class="result__snippet"[^>]*>(.*?)</a>', block, re.DOTALL)
 
-            if title_tag:
+            if title_match:
+                url_res = title_match.group(1)
+                title_res = re.sub(r'<[^>]+>', '', title_match.group(2)).strip()
+                snippet_res = ""
+                if snippet_match:
+                    snippet_res = re.sub(r'<[^>]+>', '', snippet_match.group(1)).strip()
+
                 findings.append({
                     "source": "DuckDuckGo",
                     "dork": dork,
-                    "title": title_tag.get_text().strip(),
-                    "url": title_tag.get("href", ""),
-                    "snippet": snippet_tag.get_text().strip() if snippet_tag else "",
+                    "title": title_res,
+                    "url": url_res,
+                    "snippet": snippet_res,
                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 })
     except requests.RequestException as exc:

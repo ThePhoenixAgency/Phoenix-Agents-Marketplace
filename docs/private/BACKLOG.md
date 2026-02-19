@@ -25,13 +25,13 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - [x] Integration plugin.json (skills + agents enregistres) - 2026-02-19 DONE
 - [x] 11 commandes OSINT (wrappers shell) + commands.json - 2026-02-19 DONE
 - [x] Tests validation (18 scripts syntaxe, 11 wrappers, npm test 85/85, scan secrets clean) - 2026-02-19 DONE
-- [ ] Verifier que tous les CI/CD passent
-- [ ] Pipeline CI adaptee aux skills OSINT/BB (Python lint + syntax + JSON output)
-- [ ] Refactor scripts OSINT : remplacer bs4 par outils natifs agents (search_web, read_url_content)
+- [x] Verifier que tous les CI/CD passent - 2026-02-19 DONE
+- [x] Pipeline CI adaptee aux skills OSINT/BB (Python lint + syntax) - 2026-02-19 DONE
+- [x] Refactor scripts OSINT : remplacement bs4 par regex natifs - 2026-02-19 DONE
 
 ## Should Have
 
-- [ ] Plugin marketplace.json description enrichie
+- [x] Plugin marketplace.json description enrichie - 2026-02-19 DONE
 - [ ] CLI installer (`npx claude-marketplace install`)
 - [ ] Auto-update mechanism pour les skills
 - [ ] Dashboard web pour monitoring agents

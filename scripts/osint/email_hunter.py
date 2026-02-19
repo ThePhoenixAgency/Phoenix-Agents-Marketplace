@@ -153,7 +153,6 @@ def discover_emails_from_web(domain):
 
     import urllib.parse
     import random
-    from bs4 import BeautifulSoup
 
     dorks = [
         f'"@{domain}" email',

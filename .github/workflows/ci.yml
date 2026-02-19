@@ -6,7 +6,7 @@ on:
         branches: [main]
 
 jobs:
-    lint:
+    lint-js:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -17,9 +17,21 @@ jobs:
             - run: npm ci
             - run: npm run lint
 
+    lint-python:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+            - name: Lint Python syntax
+              run: |
+                  python3 -m py_compile $(find . -name "*.py" -not -path "*/.*")
+
     test:
         runs-on: ubuntu-latest
-        needs: lint
+        needs: [lint-js, lint-python]
         strategy:
             matrix:
                 node-version: [18, 20, 22]
@@ -56,7 +68,7 @@ jobs:
 
     build:
         runs-on: ubuntu-latest
-        needs: [lint, test, security]
+        needs: [lint-js, lint-python, test, security]
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4

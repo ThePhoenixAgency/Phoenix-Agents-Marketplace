@@ -14,7 +14,7 @@ echo ""
 
 echo "## 2. Security"
 echo "  Secrets in code:"
-SECRETS=$(grep -rnE "(password|secret|api.?key)\s*=\s*['\"]" --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | grep -v '.test.' | wc -l | tr -d ' ')
+SECRETS=$(grep -rnE "(password|secret|api.?key)\s*=\s*['\"]" --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | grep -v '.test.' | wc -l | tr -d ' ' || echo "0")
 echo "    Found: $SECRETS"
 echo ""
 
@@ -34,5 +34,5 @@ echo "  Lighthouse: Run \`npx lhci autorun\` manually"
 echo ""
 
 echo "## 6. Code Quality"
-echo "  console.log count: $(grep -rn 'console\.log' --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | grep -v '.test.' | grep -v coverage | wc -l | tr -d ' ')"
-echo "  TODO count: $(grep -rn 'TODO:' --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | wc -l | tr -d ' ')"
+echo "  console.log count: $(grep -rn 'console\.log' --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | grep -v '.test.' | grep -v coverage | wc -l | tr -d ' ' || echo "0")"
+echo "  TODO count: $(grep -rn 'TODO:' --include="*.js" --include="*.ts" . 2>/dev/null | grep -v node_modules | wc -l | tr -d ' ' || echo "0")"

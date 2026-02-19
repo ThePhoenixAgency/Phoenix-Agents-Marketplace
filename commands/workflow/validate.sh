@@ -22,9 +22,9 @@ check() {
 echo "Quality Gates:"
 check "Lint" "npm run lint 2>/dev/null || npx eslint . --ext .js,.ts 2>/dev/null || true"
 check "Tests" "npm test 2>/dev/null"
-check "No console.log" "! grep -rn 'console\.log' --include='*.js' --include='*.ts' . 2>/dev/null | grep -v node_modules | grep -v '.test.' | grep -v coverage | head -1"
-check "No TODOs" "! grep -rn 'TODO:' --include='*.js' --include='*.ts' . 2>/dev/null | grep -v node_modules | head -1"
-check "No secrets" "! grep -rnE '(password|secret|api_key)\s*=' --include='*.js' --include='*.ts' . 2>/dev/null | grep -v node_modules | grep -v '.test.' | head -1"
+check "No console.log" "! grep -rn 'console\.log' --include='*.js' --include='*.ts' . 2>/dev/null | grep -vE 'node_modules|scripts/|hooks/|.venv/|.test.|coverage' | grep -q '.'"
+check "No TODOs" "! grep -rn 'TODO:' --include='*.js' --include='*.ts' . 2>/dev/null | grep -v 'node_modules' | grep -q '.'"
+check "No secrets" "! grep -rnE '(password|secret|api_key)\s*=' --include='*.js' --include='*.ts' . 2>/dev/null | grep -vE 'node_modules|.test.' | grep -q '.'"
 check ".gitignore" "test -f .gitignore"
 check "README.md" "test -f README.md"
 

@@ -5,7 +5,7 @@
         "email": "phoenix.project@outlook.fr"
     },
     "metadata": {
-        "description": "Systeme multi-agents autonome : 22 agents, 6 orchestrateurs, 57 skills, 40 commands, 14 hooks. Model-agnostic, self-contained, zero dependance tiers."
+        "description": "Systeme multi-agents autonome : 22 agents, 6 orchestrateurs, 57 skills, 40 commands, 14 hooks. Support Natif : Claude, Codex, Antigravity, Ollama, LM Studio. Orchestration par mission, TDD natif, et zero dependance tiers."
     },
     "plugins": [
         {

@@ -15,7 +15,7 @@ import urllib.parse
 
 try:
     import requests
-    from bs4 import BeautifulSoup
+    import re
     HAS_DEPS = True
 except ImportError:
     HAS_DEPS = False
@@ -137,16 +137,29 @@ def search_ddg(dork, max_results=5):
         if resp.status_code != 200:
             return []
 
-        soup = BeautifulSoup(resp.text, "html.parser")
+        # Extraction des resultats via regex (plus leger que bs4 pour orchestration)
         results = []
-        for res in soup.find_all("div", class_="result")[:max_results]:
-            title_tag = res.find("a", class_="result__a")
-            snippet_tag = res.find("a", class_="result__snippet")
-            if title_tag:
+        # On cherche les blocs de resultats
+        blocks = re.findall(r'<div class="result[^"]*"[^>]*>(.*?)</div>\s*</div>', resp.text, re.DOTALL)
+        
+        for block in blocks[:max_results]:
+            # Titre et URL
+            title_match = re.search(r'<a class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', block, re.DOTALL)
+            # Snippet
+            snippet_match = re.search(r'<a class="result__snippet"[^>]*>(.*?)</a>', block, re.DOTALL)
+            
+            if title_match:
+                # Nettoyage sommaire des tags HTML
+                url_res = title_match.group(1)
+                title_res = re.sub(r'<[^>]+>', '', title_match.group(2)).strip()
+                snippet_res = ""
+                if snippet_match:
+                    snippet_res = re.sub(r'<[^>]+>', '', snippet_match.group(1)).strip()
+                
                 results.append({
-                    "title": title_tag.get_text().strip(),
-                    "url": title_tag.get("href", ""),
-                    "snippet": snippet_tag.get_text().strip() if snippet_tag else "",
+                    "title": title_res,
+                    "url": url_res,
+                    "snippet": snippet_res,
                 })
         return results
     except requests.RequestException:

@@ -6,7 +6,8 @@
     "scripts": {
         "test": "jest --coverage",
         "test:watch": "jest --watch",
-        "lint": "echo 'lint OK'"
+        "lint": "node scripts/lint.js",
+        "build": "node scripts/build.js"
     },
     "devDependencies": {
         "jest": "^29.7.0"

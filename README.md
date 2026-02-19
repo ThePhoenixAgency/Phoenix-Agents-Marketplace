@@ -1,5 +1,5 @@
 # Claude Marketplace
-<!-- Created: 2026-02-18 | Last Updated: 2026-02-18 -->
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-19 -->
 
 Multi-agent orchestration system for Claude Code. A marketplace of specialized AI agents, skills, hooks, and commands that work together as a team.
 
@@ -54,7 +54,7 @@ bash commands/workflow/report.sh
 Signed, structured communication between agents. Supports direct messaging, pub/sub, and broadcast with RSA signature verification.
 
 ### Proxy Router
-Routes LLM requests to the optimal provider based on tier requirements. Prefers local providers (Ollama, LM Studio) to minimize cost.
+Routes LLM requests to the optimal provider (Claude, Codex, Antigravity, Ollama, LM Studio) based on tier requirements. Prefers local providers to minimize cost.
 
 ### Memory System
 Persistent storage for session data, agent state, and learned patterns. Survives between sessions.
