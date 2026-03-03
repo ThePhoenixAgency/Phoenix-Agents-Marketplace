@@ -1,41 +1,114 @@
 # Agents
-<!-- Created: 2026-02-18 | Last Updated: 2026-02-18 -->
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-23 -->
 
-21 agents specialistes + 6 orchestrateurs.
+Multi-agent system organized in 3 layers.
 
-## Agents specialistes
+## 3-Layer Architecture
 
-| Agent | Tier | Description |
-|-------|------|-------------|
-| project-manager | T2 | Orchestrateur global |
-| product-owner | T2 | Vision produit, backlog |
-| business-analyst | T2 | Analyse besoins, specs |
-| business-manager | T2 | Sales, marketing, pricing |
-| community-manager | T1 | Contenu, social media |
-| support-agent | T1 | Support, tickets |
-| executive-assistant | T1 | Agenda, emails |
-| software-architect | T3 | Architecture, technologies |
-| fullstack-dev | T2 | Code, TDD |
-| security-auditor | T3 | Securite, pentests |
-| qa-engineer | T2 | Tests, qualite |
-| devops-engineer | T2 | CI/CD, infra |
-| network-architect | T2 | Reseau, securite |
-| sysadmin | T1 | Administration systeme |
-| ui-ux-designer | T2 | Design, prototyping |
-| data-analyst | T2 | BI, dashboards |
-| data-ai-lead | T3 | ML, data engineering |
-| maker-specialist | T2 | Electronics, IoT |
-| legal-advisor | T2 | Licences, contrats |
-| finance-controller | T2 | Budget, pricing |
-| compliance-officer | T2 | GDPR, reglementation |
+```
+LAYER 1: ORCHESTRATORS (coordination)
+  Drive workflows, delegate to specialists.
+  7 orchestrators: on-demand + always-on.
 
-## Orchestrateurs
+LAYER 2: SPECIALIST AGENTS (execution)
+  Execute domain tasks. Each has its own sub-agents.
+  40 specialist agents across tiers T1-T3.
 
-| Orchestrateur | Mode | Mission |
-|---------------|------|---------|
-| web-orchestrator | On-demand | Projets web |
+LAYER 3: SUB-AGENTS (granularity)
+  Atomic capabilities within a specialist.
+  Defined in each agent file (Sub-agents section).
+```
+
+## Orchestrators (Layer 1)
+
+| Orchestrator | Mode | Mission |
+|---|---|---|
+| web-orchestrator | On-demand | Web projects, SaaS |
 | apple-orchestrator | On-demand | iOS/macOS |
-| community-orchestrator | On-demand | Contenu, social |
-| security-orchestrator | H24 | Surveillance continue |
-| home-orchestrator | H24 | Domotique |
-| infra-orchestrator | H24 | Serveurs, monitoring |
+| community-orchestrator | On-demand | Content, social |
+| security-orchestrator | Always-on | Continuous monitoring |
+| home-orchestrator | Always-on | Home automation |
+| infra-orchestrator | Always-on | Servers, monitoring |
+| bounty-orchestrator | On-demand | Bug bounty pipeline |
+
+## Specialist Agents (Layer 2)
+
+### Tier T3 (critical)
+
+| Agent | Description |
+|---|---|
+| software-architect | Architecture, technologies, ADR |
+| fullstack-dev | TDD code, all languages |
+| security-auditor | Audit, pentest, Zero Trust |
+| data-ai-lead | ML, data engineering, LLM |
+| pentester | Active intrusion testing |
+| security-researcher | Vulnerability research, CVE |
+| bounty-hunter | Bug bounty, PoC, impact |
+| tech-lead | Technical supervision |
+
+### Tier T2 (standard)
+
+| Agent | Description |
+|---|---|
+| project-manager | Planning, coordination, agile |
+| product-owner | Product vision, backlog |
+| business-analyst | Business requirements, specs |
+| business-manager | Sales, marketing, pricing |
+| devops-engineer | CI/CD, containers, cloud |
+| network-architect | Network, firewall |
+| ui-ux-designer | Design, prototyping |
+| data-analyst | BI, dashboards |
+| qa-engineer | Testing, quality |
+| maker-specialist | Electronics, IoT |
+| legal-advisor | Licenses, contracts |
+| finance-controller | Budget, pricing |
+| compliance-officer | GDPR, regulations |
+| osint-analyst | Open-source intelligence |
+| google-dorker | Advanced dorking |
+| vulnerability-assessor | CVSS, classification |
+| report-writer | Structured reports |
+| platform-manager | Bounty platforms |
+| project-classifier | Workflow routing |
+| accessibility-auditor | WCAG, a11y |
+| performance-auditor | Core Web Vitals, Lighthouse |
+| web-researcher | Tech watch, benchmarks |
+| spec-writer | Functional specifications |
+
+### Tier T1 (support)
+
+| Agent | Description |
+|---|---|
+| community-manager | Content, social media |
+| support-agent | Support, tickets |
+| executive-assistant | Calendar, emails |
+| sysadmin | System administration |
+| bounty-finance | Bounty payment tracking |
+
+## File Structure
+
+```
+agents/
+  agent-name.md              # Simple agent (same definition everywhere)
+  agent-name/                # Agent with platform overrides
+    agent.md                   Universal base
+    codex.md                   Codex override
+    antigravity.md             Antigravity override (if needed)
+  orchestrators/             # Orchestrators (Layer 1)
+    web-orchestrator.md
+    apple-orchestrator.md
+    ...
+```
+
+## Standard Frontmatter
+
+```yaml
+---
+name: agent-name
+tier: T1|T2|T3
+description: Short description.
+author: PhoenixProject
+version: 1.0.0
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+---
+```

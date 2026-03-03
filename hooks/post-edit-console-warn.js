@@ -1,6 +1,6 @@
 // Hook: post-edit-console-warn
 // Created: 2026-02-18
-// Warning si console.log ajoute dans un fichier edite
+// Warning if console.log added in an edited file
 const fs = require('fs');
 module.exports = {
     run(context) {

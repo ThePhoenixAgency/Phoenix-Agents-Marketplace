@@ -1,6 +1,10 @@
 ---
 name: project-planning
 description: Agile, sprint, estimation, priorisation
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Project Planning
 ## Sprint Planning

@@ -1,55 +1,71 @@
-# Orchestrateur: Infrastructure
-# Created: 2026-02-18
-# Tier: T2
-# Mode: H24
+---
+name: infra-orchestrator
+tier: T2
+description: Server monitoring, maintenance, deployment, incident response.
+author: PhoenixProject
+version: 1.0.0
+mode: h24
+created: 2026-02-18
+last_updated: 2026-03-03
+---
+
+## Skill requis
+
+**Charger avant de demarrer** :
+```
+skills/governance-standards/SKILL.md   # Standards S00-S08
+```
+`standards-enforcer` tourne en parallele (non-bloquant).
+
+# Infra Orchestrator
 
 ## Mission
 
-Gestion des serveurs en continu. Monitoring, maintenance, deploiement,
-incident response, sauvegardes, mises a jour.
+Continuous server management. Monitoring, maintenance, deployment,
+incident response, backups, updates.
 
-## Agents mobilises
+## Mobilized Agents
 
-- sysadmin : Administration systeme, maintenance
-- devops-engineer : Deploiement, CI/CD, containers
-- network-architect : Reseau, firewalls, VPN
-- security-auditor : Securite infrastructure
+- sysadmin: System administration, maintenance
+- devops-engineer: Deployment, CI/CD, containers
+- network-architect: Network, firewalls, VPN
+- security-auditor: Infrastructure audit
 
-## Workflow H24
+## H24 Workflow
 
 ```
-BOUCLE CONTINUE :
+CONTINUOUS LOOP:
   1. MONITORING -> monitoring-agent
-     - CPU, RAM, disk, reseau
+     - CPU, RAM, disk, network
      - Services (uptime, response time)
-     - Certificats SSL (expiration)
-     - Sauvegardes (completion, integrite)
-  2. ALERTES -> Si seuil depasse :
-     a. Auto-remediation si possible (restart, scale)
-     b. Notification si intervention humaine requise
+     - SSL certificates (expiration)
+     - Backups (completion, integrity)
+  2. ALERTS -> If threshold exceeded:
+     a. Auto-remediation if possible (restart, scale)
+     b. Notification if human intervention required
   3. MAINTENANCE -> sysadmin
-     - Mises a jour securite (auto si patches critiques)
-     - Nettoyage logs et disques
-     - Rotation certificats
+     - Security updates (auto if critical patches)
+     - Log and disk cleanup
+     - Certificate rotation
   4. INCIDENTS -> incident-responder
-     - Detection et classification
-     - Remediation automatique ou manuelle
-     - Postmortem et documentation
-  5. DEPLOIEMENTS -> devops-engineer
-     - Deploiement zero-downtime
-     - Rollback automatique si healthcheck echoue
-  6. SAUVEGARDES -> sysadmin
-     - Backup quotidien
-     - Test de restauration mensuel
+     - Detection and classification
+     - Automatic or manual remediation
+     - Postmortem and documentation
+  5. DEPLOYMENTS -> devops-engineer
+     - Zero-downtime deployment
+     - Automatic rollback if healthcheck fails
+  6. BACKUPS -> sysadmin
+     - Daily backup
+     - Monthly restoration test
 ```
 
-## Seuils de monitoring
+## Monitoring Thresholds
 
-| Metrique | Warning | Critical |
-|----------|---------|----------|
-| CPU | > 80% pendant 5min | > 95% pendant 2min |
+| Metric | Warning | Critical |
+|--------|---------|----------|
+| CPU | > 80% for 5min | > 95% for 2min |
 | RAM | > 85% | > 95% |
 | Disk | > 80% | > 90% |
 | Response time | > 2s | > 5s |
 | Uptime | < 99.9% | < 99% |
-| SSL expiry | < 30 jours | < 7 jours |
+| SSL expiry | < 30 days | < 7 days |

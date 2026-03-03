@@ -1,88 +1,95 @@
 {
-    "hooks": [
-        {
-            "type": "PreToolUse",
-            "matcher": "Bash",
-            "description": "Bloquer les dev servers lances hors tmux",
-            "command": "node hooks/block-dev-outside-tmux.js"
-        },
-        {
-            "type": "PreToolUse",
-            "matcher": "Bash",
-            "description": "Rappel tmux pour les commandes longues",
-            "command": "node hooks/tmux-reminder.js"
-        },
-        {
-            "type": "PreToolUse",
-            "matcher": "Bash",
-            "description": "Rappel review avant git push",
-            "command": "node hooks/git-push-review.js"
-        },
-        {
-            "type": "PreToolUse",
-            "matcher": "Write",
-            "description": "Bloquer creation fichiers .md arbitraires",
-            "command": "node hooks/block-random-docs.js"
-        },
-        {
-            "type": "PreToolUse",
-            "matcher": "Edit",
-            "description": "Suggerer compaction contexte a intervalles",
-            "command": "node hooks/suggest-compact.js"
-        },
-        {
-            "type": "PreCompact",
-            "matcher": "*",
-            "description": "Sauvegarder etat avant context compaction",
-            "command": "node hooks/pre-compact.js"
-        },
-        {
-            "type": "SessionStart",
-            "matcher": "*",
-            "description": "Charger contexte precedent et detecter package manager",
-            "command": "node hooks/session-start.js"
-        },
-        {
-            "type": "PostToolUse",
-            "matcher": "Bash",
-            "description": "Logger URL PR apres creation",
-            "command": "node hooks/pr-log.js"
-        },
-        {
-            "type": "PostToolUse",
-            "matcher": "Edit",
-            "description": "Auto-format avec Prettier apres edits",
-            "command": "node hooks/post-edit-format.js"
-        },
-        {
-            "type": "PostToolUse",
-            "matcher": "Edit",
-            "description": "TypeScript check apres edit .ts/.tsx",
-            "command": "node hooks/post-edit-typecheck.js"
-        },
-        {
-            "type": "PostToolUse",
-            "matcher": "Edit",
-            "description": "Warning console.log apres edits",
-            "command": "node hooks/post-edit-console-warn.js"
-        },
-        {
-            "type": "Stop",
-            "matcher": "*",
-            "description": "Checker console.log dans fichiers modifies",
-            "command": "node hooks/check-console-log.js"
-        },
-        {
-            "type": "SessionEnd",
-            "matcher": "*",
-            "description": "Persister etat de session",
-            "command": "node hooks/session-end.js"
-        },
-        {
-            "type": "SessionEnd",
-            "matcher": "*",
-            "description": "Evaluer session pour patterns extractables",
-            "command": "node hooks/evaluate-session.js"
-        }
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const i=JSON.parse(d);const p=i.tool_input?.file_path||'';if(/\\.(md|txt)$/.test(p)){const n=p.split('/').pop();const allowed=/(README|CLAUDE|AGENTS|CONTRIBUTING|CHANGELOG|INSTALL|SECURITY|BACKLOG|SKILL|SPONSOR|ARCHITECTURE|AGENTS_OVERRIDE|configurationClaude|AGENTS\\.override)\\.md$/.test(n)||p.includes('/docs/private/')||p.includes('/skills/')||p.includes('/agents/')||p.includes('/commands/')||p.includes('/standards/');const forbidden=/(^temp|^final|_v[0-9]|^draft|^notes_|^archi_|^backup)/i.test(n);if(forbidden&&!allowed){console.error('[PHOENIX] BLOCKED: Random doc file detected: '+n);console.error('[PHOENIX] Allowed: README, CHANGELOG, SKILL, BACKLOG, INSTALL, SECURITY, AGENTS_OVERRIDE');console.error('[PHOENIX] Or place in /docs/private/ for temporary work');process.exit(2)}}}catch(e){}console.log(d)})\"",
+            "description": "Block creation of random .md files - Phoenix extended allowlist"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const i=JSON.parse(d);const cmd=i.tool_input?.command||'';const devPattern=/(run (dev|start|serve)|webpack-dev-server|vite|next dev|nuxt dev|gatsby develop)/;if(process.platform!=='win32'&&!process.env.TMUX&&devPattern.test(cmd)){console.error('[PHOENIX] TIP: Dev servers run better in tmux (persistent logs):');console.error('[PHOENIX]   tmux new-session -d -s dev \"'+cmd.trim().split('\\n')[0]+'\"');console.error('[PHOENIX] Not blocking - continuing anyway')}}catch(e){}console.log(d)})\"",
+            "description": "Soft tmux reminder for dev servers (non-blocking)"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-compact.js\"",
+            "description": "Save state snapshot before context compaction - prevents semantic loss"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.js\"",
+            "description": "Load previous context, detect package manager, initialize session state"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/suggest-compact.js\"",
+            "description": "Suggest manual compaction every 50 edits to prevent context overflow"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/post-edit-format.js\"",
+            "description": "Auto-format JS/TS files with Prettier after edits"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/post-edit-console-warn.js\"",
+            "description": "Warn about console.log statements after edits"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-console-log.js\"",
+            "description": "Check for debug console.log in modified files at end of each response"
+          }
+        ]
+      }
     ]
+  }
 }

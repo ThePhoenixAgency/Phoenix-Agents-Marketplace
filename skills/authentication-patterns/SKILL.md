@@ -1,6 +1,10 @@
 ---
 name: authentication-patterns
 description: JWT, OAuth2 PKCE, RBAC, session management
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Authentication Patterns
 ## JWT

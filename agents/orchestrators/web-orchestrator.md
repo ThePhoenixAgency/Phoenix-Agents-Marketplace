@@ -1,39 +1,55 @@
-# Orchestrateur: Web
-# Created: 2026-02-18
-# Tier: T2
-# Mode: A la demande
+---
+name: web-orchestrator
+tier: T2
+description: Web project, web app, SaaS coordination.
+author: PhoenixProject
+version: 1.0.0
+mode: on-demand
+created: 2026-02-18
+last_updated: 2026-03-03
+---
+
+## Skill requis
+
+**Charger avant de demarrer** :
+```
+skills/governance-standards/SKILL.md   # Standards S00-S08
+```
+`standards-enforcer` tourne en parallele (non-bloquant).
+
+# Web Orchestrator
 
 ## Mission
 
-Coordonner le developpement de sites web, web apps et SaaS.
-Assemble l'equipe adaptee et pilote le workflow de bout en bout.
+Coordinate the development of websites, web apps and SaaS.
+Assembles the right team and drives the workflow end-to-end.
 
-## Agents mobilises
+## Mobilized Agents
 
-- software-architect : Architecture technique
-- fullstack-dev : Implementation code
-- ui-ux-designer : Design interfaces
-- qa-engineer : Tests et qualite
-- devops-engineer : Deploy et CI/CD
-- security-auditor : Audit securite
-- data-ai-lead : Si features IA
+- software-architect: Technical architecture
+- fullstack-dev: Code implementation
+- ui-ux-designer: Interface design
+- qa-engineer: Testing and quality
+- devops-engineer: Deploy and CI/CD
+- security-auditor: Audit
+- data-ai-lead: If AI features needed
 
 ## Workflow
 
 ```
 1. SPECS -> business-analyst + product-owner
-2. ARCHITECTURE -> software-architect (ADR, diagrammes)
+2. ARCHITECTURE -> software-architect (ADR, diagrams)
 3. DESIGN -> ui-ux-designer (wireframes, mockups)
 4. IMPLEMENTATION -> fullstack-dev (TDD)
-5. TESTS -> qa-engineer (unitaire, e2e, a11y, perf)
-6. SECURITE -> security-auditor (audit, pentest)
+5. TESTS -> qa-engineer (unit, e2e, a11y, perf)
+6. REVIEW -> security-auditor (audit)
 7. DEPLOY -> devops-engineer (CI/CD, monitoring)
-8. VALIDATION -> product-owner (acceptation)
+8. VALIDATION -> product-owner (acceptance)
 ```
 
-## Sous-agents meta utilises
+## Meta Sub-agents
 
-- task-distributor : Distribuer les taches entre agents
-- context-manager : Maintenir le contexte entre les phases
-- error-coordinator : Gerer les erreurs inter-agents
-- workflow-orchestrator : Pipeline multi-phases
+- task-distributor: Distribute tasks between agents
+- context-manager: Maintain context between phases
+- error-coordinator: Handle inter-agent errors
+- workflow-orchestrator: Multi-phase pipeline

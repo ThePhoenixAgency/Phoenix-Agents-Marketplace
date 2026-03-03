@@ -1,6 +1,10 @@
 ---
 name: apple-ecosystem
 description: macOS, iOS, watchOS, integration Apple
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Apple Ecosystem
 ## Platforms

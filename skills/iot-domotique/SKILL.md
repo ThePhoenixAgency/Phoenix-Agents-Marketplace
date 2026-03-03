@@ -1,6 +1,10 @@
 ---
 name: iot-domotique
 description: MQTT, edge computing, digital twins, capteurs, protocoles
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # IoT & Domotique
 ## MQTT
@@ -42,3 +46,19 @@ Simulation de scenarios avant deploiement physique.
 - Firmware signe
 - Mises a jour OTA securisees
 - Pas de mots de passe par defaut
+
+## Automatisations avancees
+- Scenes (declenchement multiple : lumiere + volets + chauffage)
+- Automations conditionnelles (si presence + heure + temperature -> action)
+- Routines programmees (reveil, depart maison, coucher)
+- Geofencing (actions a l'approche/depart du domicile)
+- Alertes intelligentes (intrusion, fuite d'eau, fumee, CO2)
+- Controle vocal via assistants integres
+
+## Gestion energetique
+- Monitoring consommation electrique en temps reel
+- Pilotage du chauffage selon la meteo et la presence
+- Optimisation heure creuse / heure pleine
+- Integration panneaux solaires et batteries
+- Suivi du cout energetique mensuel
+- Automatisation de la recharge de vehicules electriques

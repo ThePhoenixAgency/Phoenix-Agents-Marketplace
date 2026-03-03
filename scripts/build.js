@@ -1,16 +1,16 @@
 /**
- * Build : validation structurelle du projet marketplace.
+ * Build: structural validation of the marketplace project.
  *
  * Created: 2026-02-19
- * Last Updated: 2026-02-19
+ * Last Updated: 2026-02-23
  *
- * Verifie que tous les composants declares existent :
- * - Agents (dossiers dans agents/)
- * - Skills (dossiers dans skills/)
- * - Commands (fichiers .sh dans commands/)
- * - Hooks (fichiers dans hooks/)
- * - Scripts core (fichiers .js dans scripts/)
- * - Schemas (fichiers .json dans schemas/)
+ * Checks that all declared components exist:
+ * - Agents (directories in agents/)
+ * - Skills (directories in skills/)
+ * - Commands (.sh files in commands/)
+ * - Hooks (files in hooks/)
+ * - Scripts core (.js files in scripts/)
+ * - Schemas (.json files in schemas/)
  */
 
 const fs = require("fs");
@@ -20,15 +20,15 @@ const ROOT = path.resolve(__dirname, "..");
 let errors = 0;
 
 /**
- * Verifie qu'un repertoire existe et contient au moins N elements.
- * @param {string} dir - Chemin relatif depuis ROOT.
- * @param {string} label - Nom affiche.
- * @param {number} minCount - Minimum attendu.
+ * Checks that a directory exists and contains at least N elements.
+ * @param {string} dir - Relative path from ROOT.
+ * @param {string} label - Display name.
+ * @param {number} minCount - Expected minimum.
  */
 function checkDir(dir, label, minCount) {
     const full = path.join(ROOT, dir);
     if (!fs.existsSync(full)) {
-        console.error(`  [ERROR] ${label}: repertoire ${dir}/ manquant`);
+        console.error(`  [ERROR] ${label}: directory ${dir}/ missing`);
         errors++;
         return 0;
     }
@@ -44,7 +44,7 @@ function checkDir(dir, label, minCount) {
     return entries.length;
 }
 
-console.log("[BUILD] Validation de la structure du projet...\n");
+console.log("[BUILD] Validating project structure...\n");
 
 const agents = checkDir("agents", "Agents", 20);
 console.log(`  Agents:   ${agents}`);
@@ -61,7 +61,7 @@ console.log(`  Schemas:  ${schemas}`);
 const scripts = checkDir("scripts", "Scripts", 8);
 console.log(`  Scripts:  ${scripts}`);
 
-// Verifier les fichiers obligatoires
+// Check required files
 const requiredFiles = [
     "README.md",
     "CONTRIBUTING.md",
@@ -72,45 +72,45 @@ const requiredFiles = [
     ".gitignore",
 ];
 
-console.log("\n[BUILD] Fichiers obligatoires...");
+console.log("\n[BUILD] Required files...");
 for (const f of requiredFiles) {
     const full = path.join(ROOT, f);
     if (!fs.existsSync(full)) {
-        console.error(`  [ERROR] Fichier manquant: ${f}`);
+        console.error(`  [ERROR] Missing file: ${f}`);
         errors++;
     }
 }
-console.log(`  ${requiredFiles.length} fichiers verifies`);
+console.log(`  ${requiredFiles.length} files checked`);
 
-// Verifier marketplace.json
+// Check marketplace.json
 console.log("\n[BUILD] Plugin marketplace.json...");
 const marketplacePath = path.join(ROOT, ".claude-plugin", "marketplace.json");
 if (fs.existsSync(marketplacePath)) {
     try {
         const data = JSON.parse(fs.readFileSync(marketplacePath, "utf8"));
         if (!data.name) {
-            console.error("  [ERROR] marketplace.json: champ 'name' manquant");
+            console.error("  [ERROR] marketplace.json: 'name' field missing");
             errors++;
         }
         if (!data.plugins || data.plugins.length === 0) {
-            console.error("  [ERROR] marketplace.json: aucun plugin declare");
+            console.error("  [ERROR] marketplace.json: no plugin declared");
             errors++;
         }
-        console.log("  [OK] marketplace.json valide");
+        console.log("  [OK] marketplace.json valid");
     } catch (e) {
         console.error(`  [ERROR] marketplace.json: ${e.message}`);
         errors++;
     }
 } else {
-    console.error("  [ERROR] .claude-plugin/marketplace.json manquant");
+    console.error("  [ERROR] .claude-plugin/marketplace.json missing");
     errors++;
 }
 
-// Resultat
+// Result
 console.log("");
 if (errors > 0) {
-    console.error(`[ERROR] Build echoue : ${errors} erreur(s).`);
+    console.error(`[ERROR] Build failed: ${errors} error(s).`);
     process.exit(1);
 } else {
-    console.log("[OK] Build reussi : structure du projet validee.");
+    console.log("[OK] Build succeeded: project structure validated.");
 }

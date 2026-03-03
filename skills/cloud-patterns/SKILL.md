@@ -1,6 +1,10 @@
 ---
 name: cloud-patterns
 description: Lambda, DynamoDB, CDK, S3, services manages
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Cloud Patterns
 ## Serverless (Lambda)

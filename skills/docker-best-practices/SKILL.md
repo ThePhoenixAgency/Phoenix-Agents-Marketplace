@@ -1,6 +1,10 @@
 ---
 name: docker-best-practices
 description: Multi-stage builds, compose, optimisation images
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 
 # Docker Best Practices

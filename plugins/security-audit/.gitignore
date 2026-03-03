@@ -1,0 +1,11 @@
+# Security audit private files
+docs/private/
+.claude/*.local.md
+
+# Sensitive output
+*.secrets
+*.credentials
+
+# Temp files
+.tmp/
+*.log

@@ -1,11 +1,11 @@
 #!/bin/bash
 # Command: branch-cleanup
 # Created: 2026-02-18
-# Description: Nettoyer les branches locales mergees
+# Description: Clean up local branches merged into main
 
 set -euo pipefail
 
-echo "[INFO] Branches locales mergees dans main :"
-git branch --merged main | grep -v '^\*' | grep -v 'main' | grep -v 'develop' || echo "  (aucune)"
+echo "[INFO] Local branches merged into main:"
+git branch --merged main | grep -v '^\*' | grep -v 'main' | grep -v 'develop' || echo "  (none)"
 echo ""
-echo "[INFO] Pour supprimer : git branch --merged main | grep -v 'main' | xargs -r git branch -d"
+echo "[INFO] To delete: git branch --merged main | grep -v 'main' | xargs -r git branch -d"

@@ -1,6 +1,10 @@
 ---
 name: performance-optimization
 description: Code splitting, image optimization, Core Web Vitals
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Performance Optimization
 ## Core Web Vitals Targets

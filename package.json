@@ -1,5 +1,5 @@
 {
-    "name": "claude-marketplace",
+    "name": "phoenix-agents-marketplace",
     "version": "0.1.0",
     "description": "Multi-agent orchestration system",
     "private": true,
@@ -7,7 +7,8 @@
         "test": "jest --coverage",
         "test:watch": "jest --watch",
         "lint": "node scripts/lint.js",
-        "build": "node scripts/build.js"
+        "build": "node scripts/build.js",
+        "health": "node scripts/daily-health.js"
     },
     "devDependencies": {
         "jest": "^29.7.0"

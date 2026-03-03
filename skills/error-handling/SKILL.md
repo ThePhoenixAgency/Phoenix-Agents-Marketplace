@@ -1,6 +1,10 @@
 ---
 name: error-handling
 description: Patterns de gestion d'erreurs, retry, circuit breaker
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Error Handling
 ## Patterns

@@ -1,30 +1,46 @@
-# Orchestrateur: Community
-# Created: 2026-02-18
-# Tier: T2
-# Mode: A la demande
+---
+name: community-orchestrator
+tier: T2
+description: Content production, social media, multi-platform publishing.
+author: PhoenixProject
+version: 1.0.0
+mode: on-demand
+created: 2026-02-18
+last_updated: 2026-03-03
+---
+
+## Skill requis
+
+**Charger avant de demarrer** :
+```
+skills/governance-standards/SKILL.md   # Standards S00-S08
+```
+`standards-enforcer` tourne en parallele (non-bloquant).
+
+# Community Orchestrator
 
 ## Mission
 
-Coordonner la production de contenu, la gestion des reseaux sociaux et
-l'automatisation de la publication multi-plateforme.
+Coordinate content production, social media management and
+multi-platform publishing automation.
 
-## Agents mobilises
+## Mobilized Agents
 
-- community-manager : Pilotage contenu et publications
-- business-manager : Strategie marketing et SEO
-- executive-assistant : Planning et coordination
-- ui-ux-designer : Visuels et branding
+- community-manager: Content and publication management
+- business-manager: Marketing and SEO strategy
+- executive-assistant: Planning and coordination
+- ui-ux-designer: Visuals and branding
 
 ## Workflow
 
 ```
-1. STRATEGIE -> business-manager (calendrier, objectifs)
-2. REDACTION -> community-manager (blog, social, newsletter, video)
-3. DESIGN -> ui-ux-designer (visuels, branding)
-4. ADAPTATION -> community-manager/social-media-writer (par plateforme)
-5. SCHEDULING -> community-manager/social-automator (programmation)
-6. PUBLICATION -> community-manager/social-poster (publication)
-7. ENGAGEMENT -> community-manager/bot-manager (reponses, moderation)
-8. ANALYTICS -> community-manager/social-automator (metriques)
-9. OPTIMISATION -> boucle retour etape 1
+1. STRATEGY -> business-manager (calendar, objectives)
+2. WRITING -> community-manager (blog, social, newsletter, video)
+3. DESIGN -> ui-ux-designer (visuals, branding)
+4. ADAPTATION -> community-manager/social-media-writer (per platform)
+5. SCHEDULING -> community-manager/social-automator (scheduling)
+6. PUBLISHING -> community-manager/social-poster (publishing)
+7. ENGAGEMENT -> community-manager/bot-manager (responses, moderation)
+8. ANALYTICS -> community-manager/social-automator (metrics)
+9. OPTIMIZATION -> loop back to step 1
 ```

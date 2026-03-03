@@ -1,22 +1,21 @@
 {
-    "name": "claude-marketplace",
+    "name": "phoenix-agents-marketplace",
     "owner": {
-        "name": "ThePhoenixAgency",
-        "email": "phoenix.project@outlook.fr"
+        "name": "ThePhoenixAgency"
     },
     "metadata": {
-        "description": "Systeme multi-agents autonome : 22 agents, 6 orchestrateurs, 57 skills, 40 commands, 14 hooks. Support Natif : Claude, Codex, Antigravity, Ollama, LM Studio. Orchestration par mission, TDD natif, et zero dependance tiers."
+        "description": "Autonomous multi-agent system: 40 agents, 7 orchestrators, skills, commands, hooks. Multi-platform: Claude, Codex, Antigravity, Ollama, LM Studio. Mission-based orchestration, native TDD, zero third-party dependency."
     },
     "plugins": [
         {
-            "name": "claude-marketplace",
+            "name": "phoenix-agents-marketplace",
             "source": "./",
-            "description": "Systeme complet d'agents, skills, hooks, commands et rules pour orchestration multi-agents par mission",
+            "description": "Complete system of agents, skills, hooks, commands and rules for mission-based multi-agent orchestration",
             "author": {
                 "name": "ThePhoenixAgency"
             },
-            "homepage": "https://github.com/ThePhoenixAgency/Claude-Marketplace",
-            "repository": "https://github.com/ThePhoenixAgency/Claude-Marketplace",
+            "homepage": "https://github.com/ThePhoenixAgency/Phoenix-Agents-Marketplace",
+            "repository": "https://github.com/ThePhoenixAgency/Phoenix-Agents-Marketplace",
             "license": "MIT",
             "keywords": [
                 "agents",
@@ -40,7 +39,7 @@
                 "orchestration",
                 "security",
                 "devops",
-                "domotique",
+                "home-automation",
                 "model-agnostic"
             ]
         }

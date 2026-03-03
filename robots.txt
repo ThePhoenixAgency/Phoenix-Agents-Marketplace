@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Allow: /skills/
+Allow: /docs/public/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://github.com/PhoenixProject/Phoenix-Agents-Marketplace/sitemap.xml

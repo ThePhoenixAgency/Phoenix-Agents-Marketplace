@@ -1,6 +1,6 @@
 // Hook: session-start
 // Created: 2026-02-18
-// Charge le contexte precedent, detecte le package manager, initialise la session
+// Loads previous context, detects package manager, initializes session
 
 const fs = require('fs');
 const path = require('path');

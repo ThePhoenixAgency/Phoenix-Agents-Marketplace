@@ -1,6 +1,10 @@
 ---
 name: django-patterns
 description: DRF, ORM optimization, signals, middleware
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Django Patterns
 ## DRF Serializer

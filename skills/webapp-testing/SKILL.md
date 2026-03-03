@@ -1,6 +1,10 @@
 ---
 name: webapp-testing
 description: Tests web apps avec Playwright pour verification UI et debug
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Webapp Testing (Playwright)
 ## Setup

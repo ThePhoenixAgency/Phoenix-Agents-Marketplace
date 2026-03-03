@@ -1,0 +1,254 @@
+  never_stop:
+    mandatory: true
+    description: "L’agent ne doit jamais s’arrêter de lui-même, sauf si la tâche est totalement résolue ou en cas de blocage technique absolu. Il doit rester actif et proposer des actions jusqu’à validation ou blocage explicite."
+# INSTRUCTIONS_AGENT — VSX-Context-Monitor
+# Format YAML strict, lisible par humain et machine
+# Priorité : AGENTS.override.md > INSTRUCTIONS.agent.yaml > docs/BACKLOG.md
+
+agent:
+  name: Phoenix VSX Context Monitor
+  version: 1.0.0
+  tdd_strict: true
+  non_destructive: true
+  side_only: true
+  semver: true
+  docstring_required: true
+  placeholder_forbidden: true
+  forbidden_terms:
+    - password
+    - credentials
+  allowed_terms:
+    - marker
+    - relay
+    - index
+    - dossier
+    - signal
+    - beacon
+  allowed_tags:
+    - '[OK]'
+    - '[WARNING]'
+    - '[ERROR]'
+    - '[INFO]'
+    - '[PRIVATE]'
+  pipeline:
+    - classification
+    - specification
+    - recherche
+    - architecture
+    - implementation_tdd
+    - securite_zero_trust
+    - qa_tests
+    - accessibilite_wcag_2_2_aaa
+    - performance
+  iterative_cycle:
+    enabled: true
+    required_steps_per_turn:
+      - read_backlog
+      - read_checklog
+      - update_backlog_plan
+      - verify_internet_security_checks
+      - tdd_preconditions
+      - coding_turn
+      - run_tests_turn
+      - fill_checklog
+      - update_backlog_after_turn
+      - brief_user_accounting
+    checklog:
+      path: "docs/checklog.md"
+      required_before_coding: true
+      required_after_coding: true
+      mandatory_fields:
+        - date
+        - turn_id
+        - scope
+        - pre_checks
+        - tests
+        - internet_checks
+        - backlog_updates
+        - next_actions
+  pipeline_requirements:
+    - local_provider_discovery:
+        enabled: true
+        networks:
+          - "192.168.0.0/16"
+        discover_local_endpoints:
+          - url: "http://127.0.0.1:{port}"
+          - url: "http://192.168.x.x:{port}"
+        docker_mode:
+          enabled: true
+          port_mapping_hint: true
+        supported_local_backends:
+          - ollama
+          - lm_studio
+          - openai_compatible
+    - fallback:
+        user_control:
+          commands:
+            - /local
+            - /remote
+          default_mode: auto
+          persist_per_workspace: true
+        to_local_when:
+          - remote_quota_exhausted
+          - remote_provider_error
+          - remote_provider_timeout
+          - budget_inefficient_provider
+        priority_strategy: "user_config_then_performance"
+        debounce_ms: 120000
+        recovery_check_interval_ms: 30000
+        auto_return_to_remote_when:
+          - remote_restored
+    - context_budget_monitoring:
+        status_bar_thresholds_pct:
+          - 20
+          - 15
+          - 10
+          - 5
+        compaction_flow:
+          pre_compaction_step: "summarize_high_value"
+          compact_rule: "compress_rest_keep_summary"
+          reinject:
+            target_preference:
+              - active_session
+              - alternate_session
+              - side_channel_notes
+            fallback_target: side_channel_notes
+        behavior:
+          compaction_trigger_on_threshold: true
+          compact_before_warning: true
+    - budget_control:
+        token_economy_enabled: true
+        cross_provider_usage_tracking: true
+        include_provider:
+          - copilot
+          - gemini
+          - claude
+          - ollama
+          - lm_studio
+          - openai_compatible_local
+        track_fields:
+          - tokens_in
+          - tokens_out
+          - estimated_cost
+          - compaction_savings_ratio
+        compaction_trigger:
+          min_delta_seconds: 60
+    - extension_runtime:
+        continuous_monitoring: true
+        non_blocking_health_checks: true
+        health_check_interval_ms: 30000
+        telemetry_mode: "local_only_for_status"
+  pipeline_references:
+    - "../Phoenix-Agents-Marketplace/skills/dev-pipeline/SKILL.md"
+    - "../Phoenix-Agents-Marketplace/AGENTS.override.md"
+    - "https://github.com/jlcodes99/vscode-antigravity-cockpit"
+    - "https://github.com/jlcodes99/cockpit-tools"
+  pipeline_origin_files:
+    - "AGENTS.md"
+    - "AGENTS.override.md"
+    - "INSTRUCTIONS.agent.yaml"
+    - "docs/checklog.md"
+    - "docs/BACKLOG.md"
+  security:
+    gitguardian_check: true
+    central_file: "docs/private/security.md"
+    pre_implementation_web_checks:
+      enabled: true
+      mandatory_before_each_impl_phase: true
+      owasp_top_10: true
+      top_risks_tracking: true
+      cve_gate:
+        enabled: true
+        sources:
+          - nvd
+          - cisa_kev
+          - github_advisory_db
+      external_tooling_notes:
+        owasp_dependency_check: false
+        manual_review: true
+        verify_vendor_advisories: true
+    no_hardcoded_email: true
+    no_hardcoded_secrets: true
+    keychain_alias: true
+  workflow:
+    read_authorized: true
+    write_confirmation_required: true  # Seulement pour actions destructives (écriture, suppression, push, install)
+    destructive_action_validation: required  # Toute action destructive doit être validée explicitement par le propriétaire
+    read_only_action_validation: never  # Jamais de demande de validation pour lecture ou inspection
+    skills_marketplace_priority: true
+    session_validation_policy:
+      allow_global_validation: true  # L'utilisateur peut valider un type d'action destructive pour toute la session
+      scope: per_action_type  # La validation s'applique à chaque type d'action (ex: suppression, écriture, push)
+      reset_on_session_end: true  # La validation globale expire à la fin de la session
+  upstream_sync:
+    auto_sync: true
+    check_latest_before_action: true
+  repository:
+    initialization:
+      ask:
+        ask_repo_folder_name: true
+        ask_visibility_public_or_private: true
+        default_visibility: private
+      local_and_remote_init_together: true
+      local_init_required: true
+      remote_visibility_default: private
+      branches:
+        default: dev
+        create_main_before_dev: true
+        work_on: dev
+    commit_policy:
+      local_initial_commit_required: true
+      require_user_confirmation_for_local_init_commit: false
+      require_user_confirmation_for_remote_init: false
+    merge_policy:
+      test_cycle_then_owner_validation_required: true
+      merge_dev_to_main_local: true
+      merge_dev_to_main_remote: true
+      conflict_policy: "resolve_before_merge"
+  accessibility:
+    wcag_2_2_aaa: true
+  logs:
+    emoji_forbidden: true
+    prefix_required: true
+    allowed_prefixes:
+      - '[OK]'
+      - '[WARNING]'
+      - '[ERROR]'
+      - '[INFO]'
+      - '[PRIVATE]'
+  test_policy:
+    tdd: true
+    test_before_code: true
+    no_stub: true
+    no_fake: true
+    coverage_required: true
+    announce_feature_per_test: true  # Obligation d’annoncer explicitement la fonctionnalité TDD visée à chaque test/implémentation
+  code_quality:
+    comments_per_logical_block: true
+    docstrings_required: true
+    non_destructive_only: true
+    semantic_versioning: true
+  doc_policy:
+    docstring: true
+    comments_per_block: true
+    changelog: true
+  versioning:
+    semver: true
+
+hooks:
+  pre_commit:
+    branch: dev
+    required:
+      - unit_tests
+      - functional_tests
+      - e2e_tests
+      - integration_tests
+    description: "Tout commit sur dev doit passer tous les tests (unitaires, fonctionnels, E2E, intégration) localement."
+  merge:
+    branch: main
+    required:
+      - all_tests_passed
+      - manual_validation_by_owner
+    description: "Merge dans main uniquement si tous les tests sont verts ET validation manuelle par le propriétaire (toi)."
+
+# Toute contribution doit valider ce fichier ET AGENTS.override.md. Violation = rejet automatique.

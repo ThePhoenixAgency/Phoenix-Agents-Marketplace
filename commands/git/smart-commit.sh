@@ -1,11 +1,11 @@
 #!/bin/bash
 # Command: smart-commit
 # Created: 2026-02-18
-# Description: Commit avec message conventionnel auto-genere
+# Description: Commit with auto-generated conventional message
 
 set -euo pipefail
 
-# Verifier qu'il y a des changements stages
+# Check for staged changes
 if ! git diff --cached --quiet 2>/dev/null; then
   echo "[INFO] Staged changes detected"
 else
@@ -13,7 +13,7 @@ else
   exit 1
 fi
 
-# Detecter le type de changement
+# Detect change type
 CHANGED_FILES=$(git diff --cached --name-only)
 TYPE="chore"
 
@@ -27,7 +27,7 @@ elif echo "$CHANGED_FILES" | grep -qE 'Dockerfile|docker-compose|\.yml$|\.yaml$'
   TYPE="chore"
 fi
 
-# Generer le scope a partir du dossier le plus modifie
+# Generate scope from the most modified directory
 SCOPE=$(echo "$CHANGED_FILES" | head -1 | xargs dirname | tr '/' '-')
 if [ "$SCOPE" = "." ]; then
   SCOPE="root"

@@ -1,0 +1,30 @@
+name: Quad-Daily Alignment Guard
+
+on:
+  schedule:
+    - cron: '0 0,6,12,18 * * *' # 4 times per day
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  alignment-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: System Environment Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install Logic dependencies
+        run: npm install
+
+      - name: Execute Health Protocols
+        run: npm run health
+
+      - name: Structural Discovery & Compliance
+        run: node scripts/module-validator.js --all
+
+      - name: Environment Hygiene Scan
+        run: node scripts/data-hygiene.js --scan

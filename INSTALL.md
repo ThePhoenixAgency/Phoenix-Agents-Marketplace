@@ -1,35 +1,44 @@
 # Installation
-<!-- Created: 2026-02-18 | Last Updated: 2026-02-18 -->
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-23 -->
 
-## Prerequisites
-
-- Node.js >= 18
-- npm >= 9
-- Git
-
-## Quick Start
+## Quick Start / Demarrage Rapide
 
 ```bash
-git clone https://github.com/YOUR-USER/claude-marketplace.git
-cd claude-marketplace
-npm install
-npm test
+curl -sSL https://raw.githubusercontent.com/ThePhoenixAgency/Phoenix-Agents-Marketplace/main/install.sh | bash
+```
+
+This will:
+- Clone the repository
+- Install the dev-pipeline plugin into Claude Code
+- Install the security-audit plugin into Claude Code
+- Display agent/skill/command counts
+
+## Manual Installation
+
+```bash
+git clone https://github.com/ThePhoenixAgency/Phoenix-Agents-Marketplace.git
+cd Phoenix-Agents-Marketplace
+bash install.sh
+```
+
+## Codex CLI
+
+```bash
+bash scripts/install-skill.sh
+```
+
+## Uninstall
+
+```bash
+bash scripts/uninstall-skill.sh
 ```
 
 ## Verify Installation
 
 ```bash
-# Run all tests
-npm test
-
-# Check coverage
-npx jest --coverage
-
-# Validate project
-bash commands/workflow/validate.sh
-
-# Generate report
-bash commands/workflow/report.sh
+npm test                             # Run tests
+bash commands/workflow/validate.sh   # Validate project
+bash commands/workflow/report.sh     # Generate report
 ```
 
 ## Optional Dependencies
@@ -38,23 +47,12 @@ bash commands/workflow/report.sh
 - [Ollama](https://ollama.com) - Local LLM server
 - [LM Studio](https://lmstudio.ai) - GUI for local models
 
-### Code Quality
-```bash
-npm install -g eslint prettier
-```
-
-### Security Scanning
-```bash
-npm install -g gitleaks
-```
-
 ## Directory Structure
 
 After installation, your project should contain:
-- `node_modules/` - Dependencies (gitignored)
-- `scripts/` - Core infrastructure
-- `tests/` - Test suites
 - `agents/` - Agent definitions
 - `skills/` - Skill modules
 - `commands/` - Shell commands
 - `hooks/` - Lifecycle hooks
+- `scripts/` - Core infrastructure
+- `standards/` - Governance standards

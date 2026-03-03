@@ -1,6 +1,10 @@
 ---
 name: nextjs-mastery
 description: App Router, RSC, ISR, Server Actions, Middleware
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Next.js Mastery
 ## App Router

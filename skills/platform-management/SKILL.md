@@ -1,6 +1,10 @@
 ---
 name: platform-management
 description: Bug Bounty platform management - submission, triage, communication
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 
 # Platform Management Skill

@@ -1,6 +1,10 @@
 ---
 name: websocket-realtime
 description: Socket.io, SSE, reconnection, scaling
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # WebSocket & Realtime
 ## Socket.io Server

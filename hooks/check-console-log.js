@@ -1,6 +1,6 @@
 // Hook: check-console-log
 // Created: 2026-02-18
-// Check global console.log dans les fichiers modifies avant stop
+// Check global console.log in modified files before stop
 const { execSync } = require('child_process');
 module.exports = {
     run(context) {

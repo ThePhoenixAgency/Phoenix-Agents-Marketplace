@@ -1,6 +1,10 @@
 ---
 name: infrastructure-as-code
 description: Terraform, IaC patterns, state management
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Infrastructure as Code
 ## Terraform

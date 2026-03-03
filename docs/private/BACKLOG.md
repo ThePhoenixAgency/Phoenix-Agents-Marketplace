@@ -1,5 +1,5 @@
 # Backlog
-<!-- Created: 2026-02-18 | Last Updated: 2026-02-19 -->
+<!-- Created: 2026-02-18 | Last Updated: 2026-02-23 -->
 
 Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 
@@ -28,11 +28,27 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - [x] Verifier que tous les CI/CD passent - 2026-02-19 DONE
 - [x] Pipeline CI adaptee aux skills OSINT/BB (Python lint + syntax) - 2026-02-19 DONE
 - [x] Refactor scripts OSINT : remplacement bs4 par regex natifs - 2026-02-19 DONE
+- [ ] Normaliser tous les agents : frontmatter YAML uniforme (name, tier, description, author: PhoenixProject, version: 1.0.0, created, last_updated)
+- [ ] Normaliser toutes les skills : capsule documentaire + frontmatter SemVer + author PhoenixProject
+- [ ] Reecrire les 64 skills existantes avec noms explicites (pas de prefixe phoenix-)
+- [ ] Importer et reecrire les skills du repo antigravity-awesome-skills (trier, fusionner, ameliorer)
+- [ ] Supprimer les 8 dossiers phoenix-* (doublons des skills existantes, contenu fusionne)
+- [ ] JSDoc/docstring sur tous les scripts (hooks, commands)
+- [ ] Mettre a jour README agents/ (dit 21 mais il y en a 33)
+- [ ] Integration avec Codex (symlink marketplace.local + config.toml)
+- [ ] Integration avec ORCHESTRATION_IA (destroy pods, rebuild from marketplace)
+- [ ] Multi-plateforme : valider compatibilite Antigravity, Claude Code, Codex CLI
+- [ ] Publier version finale sur GitHub
+- [ ] Mise a jour en cascade dans tous les repos dependants :
+  - ~/.codex/ (config.toml, AGENTS.override.md, standards/agents/, standards/templates/)
+  - ORCHESTRATION_IA (pods, agents, skills)
+  - OpenClaw (skills references)
+  - Tout futur projet qui pioche dans le marketplace
 
 ## Should Have
 
 - [x] Plugin marketplace.json description enrichie - 2026-02-19 DONE
-- [ ] CLI installer (`npx claude-marketplace install`)
+- [ ] CLI installer (`npx phoenix-agents-marketplace install`)
 - [ ] Auto-update mechanism pour les skills
 - [ ] Dashboard web pour monitoring agents
 
@@ -41,11 +57,10 @@ Source de verite de la gestion de projet. NE JAMAIS EFFACER, marquer DONE.
 - [ ] VS Code extension pour marketplace browsing
 - [ ] Templates pour creer de nouveaux agents/skills
 - [ ] Metrics et analytics sur l'utilisation des agents
-- [ ] Integration avec d'autres LLM providers (Anthropic API, OpenAI)
+- [ ] Integration avec d'autres LLM providers
 
 ## Won't Have (v1)
 
 - Custom LLM training pipeline
 - SaaS hosting platform
 - Billing/subscription management
-

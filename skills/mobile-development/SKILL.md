@@ -1,6 +1,10 @@
 ---
 name: mobile-development
 description: React Native, Flutter, responsive layouts
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Mobile Development
 ## React Native

@@ -1,7 +1,7 @@
 // Script: Memory System
 // Created: 2026-02-18
 // Last Updated: 2026-02-18
-// Systeme de memoire persistante pour les sessions
+// Persistent memory system for sessions
 
 const fs = require('fs');
 const path = require('path');

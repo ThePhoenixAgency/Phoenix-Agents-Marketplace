@@ -1,27 +1,28 @@
 /**
- * Lint : validation de la structure et syntaxe du projet.
+ * Lint: project structure and syntax validation.
  *
  * Created: 2026-02-19
- * Last Updated: 2026-02-19
+ * Last Updated: 2026-02-23
  *
- * Verifie :
- * - JSON valide (schemas, marketplace.json, package.json)
- * - Shell syntax (bash -n sur tous les .sh)
- * - JavaScript syntax (node --check sur tous les .js)
+ * Checks:
+ * - Valid JSON (schemas, marketplace.json, package.json)
+ * - Shell syntax (bash -n on all .sh)
+ * - JavaScript syntax (node --check on all .js)
  */
 
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
 const ROOT = path.resolve(__dirname, "..");
 let errors = 0;
 
 /**
- * Collecte recursivement les fichiers avec l'extension donnee.
- * @param {string} dir - Repertoire de depart.
- * @param {string} ext - Extension (ex: ".json").
- * @returns {string[]} Liste de chemins absolus.
+ * Recursively collects files with the given extension.
+ * @param {string} dir - Starting directory.
+ * @param {string} ext - Extension (e.g. ".json").
+ * @returns {string[]} List of absolute paths.
  */
 function collectFiles(dir, ext) {
     const results = [];
@@ -54,7 +55,7 @@ for (const f of jsonFiles) {
         errors++;
     }
 }
-console.log(`  ${jsonFiles.length} fichiers JSON valides`);
+console.log(`  ${jsonFiles.length} valid JSON files`);
 
 // -- Shell syntax (bash -n) --
 console.log("[LINT] Shell syntax check...");
@@ -67,7 +68,7 @@ for (const f of shFiles) {
         errors++;
     }
 }
-console.log(`  ${shFiles.length} scripts shell valides`);
+console.log(`  ${shFiles.length} valid shell scripts`);
 
 // -- JavaScript syntax (node --check) --
 console.log("[LINT] JavaScript syntax check...");
@@ -80,25 +81,44 @@ for (const f of jsFiles) {
         errors++;
     }
 }
-console.log(`  ${jsFiles.length} scripts JS valides`);
+console.log(`  ${jsFiles.length} valid JS scripts`);
 
 // -- Python syntax (python3 -m py_compile) --
 console.log("[LINT] Python syntax check...");
 const pyFiles = collectFiles(ROOT, ".py");
-for (const f of pyFiles) {
-    try {
-        execSync(`python3 -m py_compile "${f}"`, { stdio: "pipe" });
-    } catch (e) {
-        console.error(`  [ERROR] ${path.relative(ROOT, f)}: syntax error`);
-        errors++;
+let pyCacheDir = null;
+const compilePython = (file) => {
+    const envPrefix = pyCacheDir ? `PYTHONPYCACHEPREFIX="${pyCacheDir}" ` : "";
+    execSync(`${envPrefix}python3 -m py_compile "${file}"`, { stdio: "pipe" });
+};
+const ensurePyCache = () => {
+    if (pyCacheDir) return;
+    pyCacheDir = fs.mkdtempSync(path.join(os.tmpdir(), "codex-py-cache-"));
+};
+try {
+    for (const f of pyFiles) {
+        try {
+            compilePython(f);
+        } catch (e) {
+            const msg = (e.stderr || e.stdout || "").toString();
+            if (/Operation not permitted/.test(msg) && !pyCacheDir) {
+                ensurePyCache();
+                compilePython(f);
+                continue;
+            }
+            console.error(`  [ERROR] ${path.relative(ROOT, f)}: syntax error`);
+            errors++;
+        }
     }
+} finally {
+    if (pyCacheDir) fs.rmSync(pyCacheDir, { recursive: true, force: true });
 }
-console.log(`  ${pyFiles.length} scripts Python valides`);
+console.log(`  ${pyFiles.length} valid Python scripts`);
 
-// -- Resultat --
+// -- Result --
 if (errors > 0) {
-    console.error(`\n[ERROR] ${errors} erreur(s) de lint detectee(s).`);
+    console.error(`\n[ERROR] ${errors} lint error(s) detected.`);
     process.exit(1);
 } else {
-    console.log(`\n[OK] Lint clean : ${jsonFiles.length + shFiles.length + jsFiles.length + pyFiles.length} fichiers verifies.`);
+    console.log(`\n[OK] Lint clean: ${jsonFiles.length + shFiles.length + jsFiles.length + pyFiles.length} files checked.`);
 }

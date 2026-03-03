@@ -1,6 +1,10 @@
 ---
 name: frontend-excellence
 description: Architecture composants, state management, performance budgets
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 
 # Frontend Excellence

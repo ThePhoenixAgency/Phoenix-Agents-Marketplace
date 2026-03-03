@@ -25,6 +25,10 @@ __pycache__/
 
 # Private docs
 /private/
+docs/private/
+
+# Tests
+tests/
 
 # OS
 .DS_Store

@@ -1,0 +1,21 @@
+{
+  "name": "security-audit",
+  "version": "1.0.0",
+  "description": "Audit de securite complet avec recherche CVE/CWE/OWASP/MITRE/NIST/CERT, detection de secrets, analyse de vulnerabilites et remediation",
+  "author": {
+    "name": "PhoenixProject",
+    "email": "user@example.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "audit",
+    "vulnerability",
+    "cve",
+    "cwe",
+    "owasp",
+    "secrets",
+    "sast",
+    "zero-trust"
+  ]
+}

@@ -1,6 +1,10 @@
 ---
 name: accessibility-wcag
 description: ARIA, keyboard navigation, contraste, WCAG 2.2 AAA
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Accessibility (WCAG 2.2 AAA)
 ## Regles obligatoires

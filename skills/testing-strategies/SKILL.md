@@ -1,6 +1,10 @@
 ---
 name: testing-strategies
 description: Contract, snapshot, property-based testing
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # Testing Strategies
 ## Contract Testing

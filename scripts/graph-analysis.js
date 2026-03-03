@@ -1,7 +1,7 @@
 // Script: Graph Analysis
 // Created: 2026-02-18
 // Last Updated: 2026-02-18
-// Analyse les dependances entre modules et detecte les cycles
+// Analyzes dependencies between modules and detects cycles
 
 const fs = require('fs');
 const path = require('path');

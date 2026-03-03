@@ -1,40 +1,56 @@
-# Orchestrateur: Home
-# Created: 2026-02-18
-# Tier: T2
-# Mode: H24
+---
+name: home-orchestrator
+tier: T2
+description: Home automation, smart home, IoT.
+author: PhoenixProject
+version: 1.0.0
+mode: h24
+created: 2026-02-18
+last_updated: 2026-03-03
+---
+
+## Skill requis
+
+**Charger avant de demarrer** :
+```
+skills/governance-standards/SKILL.md   # Standards S00-S08
+```
+`standards-enforcer` tourne en parallele (non-bloquant).
+
+# Home Orchestrator
 
 ## Mission
 
-Domotique et automatisation maison en continu.
-Gestion eclairage, chauffage, volets, capteurs, routines, scenarios.
+Home automation and smart home in continuous operation.
+Lighting, heating, shutters, sensors, routines, scenarios.
 
-## Agents mobilises
+## Mobilized Agents
 
-- maker-specialist : Systemes IoT, capteurs, automatisation
-- sysadmin : Serveurs domotique (Home Assistant, etc.)
-- network-architect : Reseau IoT, segmentation
-- data-ai-lead : Apprentissage habitudes, optimisation
+- maker-specialist: IoT systems, sensors, automation
+- sysadmin: Home automation servers (Home Assistant, etc.)
+- network-architect: IoT network, segmentation
+- data-ai-lead: Habit learning, optimization
 
-## Workflow H24
+## H24 Workflow
 
 ```
-BOUCLE CONTINUE :
-  1. COLLECTE -> iot-engineer (capteurs : temperature, luminosite, presence)
-  2. ANALYSE -> data-ai-lead (patterns, predictions, habitudes)
-  3. DECISION -> Scenarios automatiques :
-     - Matin : ouverture volets, eclairage adapte
-     - Depart : extinction generale, alarme activee
-     - Arrivee : eclairage, chauffage, musique
-     - Nuit : extinction progressive, mode nuit
-  4. EXECUTION -> maker-specialist/iot-engineer (actionneurs)
-  5. MONITORING -> sysadmin (sante systeme domotique)
-  6. OPTIMISATION -> data-ai-lead (ajuster selon retours)
+CONTINUOUS LOOP:
+  1. COLLECT -> iot-engineer (sensors: temperature, luminosity, presence)
+  2. ANALYZE -> data-ai-lead (patterns, predictions, habits)
+  3. DECIDE -> Automatic scenarios:
+     - Morning: open shutters, adapted lighting
+     - Departure: full shutdown, alarm activated
+     - Arrival: lighting, heating, music
+     - Night: progressive dimming, night mode
+  4. EXECUTE -> maker-specialist/iot-engineer (actuators)
+  5. MONITORING -> sysadmin (home automation system health)
+  6. OPTIMIZE -> data-ai-lead (adjust based on feedback)
 ```
 
-## Protocoles supportes
+## Supported Protocols
 
-- MQTT (communication capteurs/actionneurs)
-- Zigbee / Z-Wave (peripheriques domotique)
-- Wi-Fi / Thread (reseau local)
-- HomeKit (integration Apple)
-- Matter (standard universel)
+- MQTT (sensor/actuator communication)
+- Zigbee / Z-Wave (home automation peripherals)
+- Wi-Fi / Thread (local network)
+- HomeKit (Apple integration)
+- Matter (universal standard)

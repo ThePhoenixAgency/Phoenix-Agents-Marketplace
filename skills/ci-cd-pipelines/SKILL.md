@@ -1,6 +1,10 @@
 ---
 name: ci-cd-pipelines
 description: GitHub Actions, GitLab CI, matrix builds, cache
+author: PhoenixProject
+version: 1.0.0
+created: 2026-02-18
+last_updated: 2026-02-23
 ---
 # CI/CD Pipelines
 ## GitHub Actions

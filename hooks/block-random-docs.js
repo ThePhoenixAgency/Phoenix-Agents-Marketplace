@@ -1,6 +1,6 @@
 // Hook: block-random-docs
 // Created: 2026-02-18
-// Bloque la creation de fichiers .md arbitraires (temp, final, todo_v2, etc.)
+// Blocks creation of arbitrary .md files (temp, final, todo_v2, etc.)
 
 const ALLOWED_DOCS = [
     'README.md',

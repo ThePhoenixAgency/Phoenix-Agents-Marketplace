@@ -1,49 +1,65 @@
-# Orchestrateur: Security
-# Created: 2026-02-18
-# Tier: T3
-# Mode: H24
+---
+name: security-orchestrator
+tier: T3
+description: Continuous monitoring, detection, real-time alerts.
+author: PhoenixProject
+version: 1.0.0
+mode: h24
+created: 2026-02-18
+last_updated: 2026-03-03
+---
+
+## Skill requis
+
+**Charger avant de demarrer** :
+```
+skills/governance-standards/SKILL.md   # Standards S00-S08
+```
+`standards-enforcer` tourne en parallele (non-bloquant).
+
+# Security Orchestrator
 
 ## Mission
 
-Securite interieure en continu. Surveillance reseau, cameras, alarmes,
-detection d'intrusion (physique et numerique), alertes en temps reel.
+Continuous internal monitoring. Network surveillance, cameras, alarms,
+intrusion detection (physical and digital), real-time alerts.
 
-## Agents mobilises
+## Mobilized Agents
 
-- security-auditor : Audit continu, detection menaces
-- network-architect : Surveillance perimetre reseau
-- sysadmin : Monitoring systemes, logs
-- maker-specialist : Capteurs IoT, cameras, alarmes
+- security-auditor: Continuous audit, threat detection
+- network-architect: Network perimeter surveillance
+- sysadmin: System monitoring, logs
+- maker-specialist: IoT sensors, cameras, alarms
 
-## Workflow H24
+## H24 Workflow
 
 ```
-BOUCLE CONTINUE :
-  1. SURVEILLANCE -> monitoring-agent (logs, trafic, cameras)
+CONTINUOUS LOOP:
+  1. SURVEILLANCE -> monitoring-agent (logs, traffic, cameras)
   2. DETECTION -> security-auditor (anomalies, intrusions)
-  3. ALERTE -> Si menace detectee :
-     a. Classification (severite, type)
-     b. Notification immediate
-     c. Actions automatiques (blocage IP, isolation zone)
-  4. ANALYSE -> security-auditor + network-architect
-  5. REMEDIATION -> Actions correctives
-  6. RAPPORT -> Rapport d'incident
-  7. RETOUR -> Boucle continue
+  3. ALERT -> If threat detected:
+     a. Classification (severity, type)
+     b. Immediate notification
+     c. Automatic actions (IP blocking, zone isolation)
+  4. ANALYSIS -> security-auditor + network-architect
+  5. REMEDIATION -> Corrective actions
+  6. REPORT -> Incident report
+  7. RETURN -> Continuous loop
 ```
 
-## Modes d'alerte
+## Alert Modes
 
-| Severite | Action |
+| Severity | Action |
 |----------|--------|
-| INFO | Log uniquement |
-| WARNING | Notification push |
-| CRITICAL | Notification + actions automatiques |
-| EMERGENCY | Notification + actions + escalation humain |
+| INFO | Log only |
+| WARNING | Push notification |
+| CRITICAL | Notification + automatic actions |
+| EMERGENCY | Notification + actions + human escalation |
 
-## Sources surveillees
+## Monitored Sources
 
-- Trafic reseau (firewall logs, IDS/IPS)
-- Cameras de surveillance (motion detection)
-- Capteurs IoT (portes, fenetres, mouvement)
-- Logs systeme (auth failures, sudo, SSH)
+- Network traffic (firewall logs, IDS/IPS)
+- Surveillance cameras (motion detection)
+- IoT sensors (doors, windows, motion)
+- System logs (auth failures, sudo, SSH)
 - DNS queries (exfiltration detection)

@@ -1,6 +1,6 @@
 // Hook: post-edit-format
 // Created: 2026-02-18
-// Auto-format avec Prettier apres chaque edit de fichier
+// Auto-format with Prettier after each file edit
 
 const { execSync } = require('child_process');
 const path = require('path');
