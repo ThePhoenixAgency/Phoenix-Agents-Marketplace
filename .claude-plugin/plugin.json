@@ -16,12 +16,9 @@
         "skills",
         "agents",
         "pipeline",
-        "proxy",
-        "local-ai"
     ],
     "skills": [
-        "./plugins/dev-pipeline/skills/",
-        "./plugins/local-switch/skills/"
+        "./plugins/dev-pipeline/skills/"
     ],
     "agents": [
         "./plugins/dev-pipeline/agents/project-classifier.md",
